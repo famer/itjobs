@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Position;
+use App\Models\Company;
+use Illuminate\Support\Facades\Gate;
+
+class PositionController extends Controller
+{
+    public function index(Position $position) {
+        return view('position.index', ['position' => $position]);
+    }
+
+    public function store(Request $request) {
+
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'description' => 'required'
+        ]);
+
+        // Check if company belongs to the user
+        if (!Company::find($request->company_id)->user->user_id === auth()->user()->user_id) {
+            return back();
+        }
+        
+        Position::create($request->only(['title', 'description', 'company_id']));
+
+        return back();
+    }
+
+    public function destroy(Position $position) {
+
+        // Check if company belongs to the user
+        if (!Gate::allows('update-position', $position)) {
+            abort(403);
+        }
+
+        $position->delete();
+
+        return back();
+
+    }
+
+    public function editForm(Position $position) {
+        if (!Gate::allows('update-position', $position)) {
+            abort(403);
+        }
+        return view('position.edit-form', [ 'position' => $position ]);
+    }
+
+    public function edit(Position $position, Request $request) {
+
+        // Check if company of the position belongs to current user
+        if (!Gate::allows('update-position', $position)) {
+            abort(403);
+        }
+        $position->update($request->only(['title', 'description']));
+        return redirect()->route('position', $position);
+    }
+}

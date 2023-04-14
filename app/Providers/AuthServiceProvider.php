@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Models\User;
+use App\Models\Position;
+use App\Models\Company;
+
+class AuthServiceProvider extends ServiceProvider
+{
+    /**
+     * The model to policy mappings for the application.
+     *
+     * @var array<class-string, class-string>
+     */
+    protected $policies = [
+        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+    ];
+
+    /**
+     * Register any authentication / authorization services.
+     */
+    public function boot(): void
+    {
+        Gate::define('moderate', function (User $user) {
+            return $user->isAdminOrModerator();
+        });
+
+
+        Gate::define('create-company', function (User $user) {
+            return $user->isAdminOrModerator() || $user->type == 'employer';
+        });
+
+        Gate::define('create-position', function (User $user, Company $company) {
+            return $user->isAdminOrModerator() || ( $user->type == 'employer' && $company->user->id === $user->id );
+        });
+
+        Gate::define('update-position', function (User $user, Position $position) {
+            return $user->isAdminOrModerator() || ( $user->type == 'employer' && $position->company->user->id === $user->id);
+        });
+    }
+}
