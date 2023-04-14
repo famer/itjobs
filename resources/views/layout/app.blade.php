@@ -9,6 +9,7 @@
     </head>
     <body>
         <div class="p-2 mb-5">
+            <a class="hover:underline" href="{{ route('register') }}">Registration</a>
             <a class="hover:underline" href="{{ route('login') }}">Login</a>
             <form class="inline" method="post" action="{{ route('logout') }}">
                 @csrf
