@@ -20,10 +20,10 @@
             
                 <a class="hover:underline" href="{{ route('company') }}">Companies</a>
             @endif
-            @if(auth()->user()->isAdminOrModerator())
+            @can('moderate')
                 <a class="hover:underline" href="{{ route('moderate.companies') }}">Moderate companies</a>
                 <a class="hover:underline" href="{{ route('moderate.positions') }}">Moderate positions</a>
-            @endif
+            @endcan
         </div>
         @yield('content')
     </body>
