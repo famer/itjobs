@@ -1,4 +1,5 @@
 ## useful commands
+- install composer dependencies: `omposer install`
 - rename .env.example file: `mv .env.example .env`
 - generate app key: `php artisan key:generate`
 - to drop previous sqlite db: `rm database/database.sqlite`
