@@ -9,15 +9,21 @@
     </head>
     <body>
         <div class="p-2 mb-5">
-            <a class="hover:underline" href="{{ route('register') }}">Registration</a>
-            <a class="hover:underline" href="{{ route('login') }}">Login</a>
-            <form class="inline" method="post" action="{{ route('logout') }}">
-                @csrf
-                <button class="hover:underline text-red-500" type="submit">Logout</button>
-            </form>
-            <a class="hover:underline" href="{{ route('company') }}">Companies</a>
-            <a class="hover:underline" href="{{ route('moderate.companies') }}">Moderate companies</a>
-            <a class="hover:underline" href="{{ route('moderate.positions') }}">Moderate positions</a>
+            @if (!auth()->user())
+                <a class="hover:underline" href="{{ route('register') }}">Registration</a>
+                <a class="hover:underline" href="{{ route('login') }}">Login</a>
+            @else
+                <form class="inline" method="post" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="hover:underline text-red-500" type="submit">Logout</button>
+                </form>
+            
+                <a class="hover:underline" href="{{ route('company') }}">Companies</a>
+            @endif
+            @if(auth()->user()->isAdminOrModerator())
+                <a class="hover:underline" href="{{ route('moderate.companies') }}">Moderate companies</a>
+                <a class="hover:underline" href="{{ route('moderate.positions') }}">Moderate positions</a>
+            @endif
         </div>
         @yield('content')
     </body>
