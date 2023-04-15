@@ -6,3 +6,7 @@
 - to run migrations and seed the db: `php artisan migrate --force --seed`
 - to run server: `php artisan serve`
 - to run dev front server(in separate tab): `npm i; npm run dev`
+
+## run with docker
+- build an image `docker build -t itjobs .`
+- run it `docker run --name=itjobs -it --rm -p 8000:8000 itjobs`
