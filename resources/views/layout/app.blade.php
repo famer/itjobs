@@ -20,8 +20,10 @@
             
                 <a class="hover:underline" href="{{ route('company') }}">Companies</a>
             @endif
-            @can('moderate')
+            @canany(['moderate', 'moderate-companies'])
                 <a class="hover:underline" href="{{ route('moderate.companies') }}">Moderate companies</a>
+            @endcan
+            @canany(['moderate', 'moderate-positions'])
                 <a class="hover:underline" href="{{ route('moderate.positions') }}">Moderate positions</a>
             @endcan
         </div>

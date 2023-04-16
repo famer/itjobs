@@ -25,20 +25,27 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('moderate', function (User $user) {
-            return $user->isAdminOrModerator();
+            return $user->type == 'admin' || $user->type == 'moderator';
         });
 
+        Gate::define('moderate-companies', function (User $user) {
+            return $user->type == 'admin' || $user->type == 'companies-moderator';
+        });
+
+        Gate::define('moderate-positions', function (User $user) {
+            return $user->type == 'admin' || $user->type == 'positions-moderator';
+        });
 
         Gate::define('create-company', function (User $user) {
-            return $user->isAdminOrModerator() || $user->type == 'employer';
+            return $user->isAdmin() || $user->type == 'employer';
         });
 
         Gate::define('create-position', function (User $user, Company $company) {
-            return $user->isAdminOrModerator() || ( $user->type == 'employer' && $company->user->id === $user->id );
+            return $user->isAdmin() || ( $user->type == 'employer' && $company->user->id === $user->id );
         });
 
         Gate::define('update-position', function (User $user, Position $position) {
-            return $user->isAdminOrModerator() || ( $user->type == 'employer' && $position->company->user->id === $user->id);
+            return $user->isAdmin() || ( $user->type == 'employer' && $position->company->user->id === $user->id);
         });
     }
 }

@@ -42,8 +42,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function isAdminOrModerator() {
-        return in_array($this->type, array('admin', 'moderator'));
+    public function isAdmin() {
+        return $this->type == 'admin';
     }
 
     public function companies() {

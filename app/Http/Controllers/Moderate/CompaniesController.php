@@ -10,9 +10,9 @@ class CompaniesController extends Controller
 {
 
     public function __construct() {
-        $this->middleware(['can:moderate']);
+        $this->middleware(['canany:moderate-companies,moderate']);
     }
-    
+
     public function moderateCompaniesList() {
 
         $companies = Company::get()->where('moderated', 'no');

@@ -10,9 +10,9 @@ class PositionsController extends Controller
 {
     
     public function __construct() {
-        $this->middleware(['can:moderate']);
+        $this->middleware(['canany:moderate-positions,moderate']);
     }
-    
+
     public function moderatePositionsList() {
         $positions = Position::get()->where('moderated', 'no');
 
