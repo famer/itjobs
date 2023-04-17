@@ -19,7 +19,4 @@ class Notification extends Model
         );
     }
 
-    public function getNotifications() {
-
-    }
 }
