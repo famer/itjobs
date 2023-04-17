@@ -42,12 +42,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getNotificationsCount() {
+        return Notification::count($this);
+    }
+
     public function isAdmin() {
         return $this->type == 'admin';
     }
 
     public function companies() {
         return $this->hasMany(Company::class, 'user_id', 'id');
+    }
+
+    public function positions() {
+        return $this->hasManyThrough(Position::class, Company::class);
     }
     
 }

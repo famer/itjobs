@@ -40,6 +40,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isAdmin() || $user->type == 'employer';
         });
 
+        Gate::define('update-company', function (User $user, Company $company) {
+            return $user->isAdmin() || ( $user->type == 'employer' && $company->user->id === $user->id);
+        });
+
         Gate::define('create-position', function (User $user, Company $company) {
             return $user->isAdmin() || ( $user->type == 'employer' && $company->user->id === $user->id );
         });

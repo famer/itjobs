@@ -19,6 +19,12 @@
                 </form>
             
                 <a class="hover:underline" href="{{ route('company') }}">Companies</a>
+
+                <span>{{ auth()->user()->name }} 
+                    @if (auth()->user()->getNotificationsCount())
+                        <a href="{{ route('notifications') }}">( {{ auth()->user()->getNotificationsCount() }} )</a>
+                    @endif
+                </span>
             @endif
             @canany(['moderate', 'moderate-companies'])
                 <a class="hover:underline" href="{{ route('moderate.companies') }}">Moderate companies</a>
@@ -26,6 +32,7 @@
             @canany(['moderate', 'moderate-positions'])
                 <a class="hover:underline" href="{{ route('moderate.positions') }}">Moderate positions</a>
             @endcan
+            
         </div>
         @yield('content')
     </body>

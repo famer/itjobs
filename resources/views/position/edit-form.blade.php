@@ -20,5 +20,8 @@
         @enderror
         <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold rounded py-1 px-4">Save</button>
     </form>
+    @if($position->moderationComments)
+        <div class="bg-red-500 w-48 rounded">{{ $position->moderationComments }}</div>
+    @endif
 
 @endsection

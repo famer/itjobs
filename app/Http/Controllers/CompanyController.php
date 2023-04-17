@@ -19,7 +19,30 @@ class CompanyController extends Controller
             abort(403);
         }
         $companies = auth()->user()->companies->where('moderated', 'yes');
-        return view('company.index', ['companies' => $companies]);
+        $toEdit = auth()->user()->companies->where('moderated', 'remoderation');
+        return view('company.index', [
+            'companies' => $companies,
+            'toEdit' => $toEdit,
+        ]);
+    }
+
+    public function editForm(Company $company) {
+        if (!Gate::allows('update-company', $company)) {
+            abort(403);
+        }
+        return view('company.edit-form', [ 'company' => $company ]);
+    }
+
+    public function edit(Company $company, Request $request) {
+
+        // Check if company belongs to current user
+        if (!Gate::allows('update-company', $company)) {
+            abort(403);
+        }
+        $company->name = $request->name;
+        $company->moderated = 'no';
+        $company->save();
+        return redirect()->route('company', $company);
     }
 
     public function company(Company $company) {

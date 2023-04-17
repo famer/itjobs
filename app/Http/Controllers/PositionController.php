@@ -56,7 +56,10 @@ class PositionController extends Controller
         if (!Gate::allows('update-position', $position)) {
             abort(403);
         }
-        $position->update($request->only(['title', 'description']));
+        $position->title = $request->title;
+        $position->description = $request->description;
+        $position->moderated = 'no';
+        $position->save();
         return redirect()->route('position', $position);
     }
 }

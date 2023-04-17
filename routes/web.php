@@ -9,6 +9,7 @@ use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ModerationController;
 use App\Http\Controllers\Moderate\CompaniesController;
 use App\Http\Controllers\Moderate\PositionsController;
+use App\Http\Controllers\NotificationController;
 
 
 /*
@@ -37,6 +38,8 @@ Route::post('/logout', [LogoutController::class, 'logout']);
 
 Route::get('/companies', [CompanyController::class, 'index'])->name('company');
 Route::get('/companies/{company}', [CompanyController::class, 'company'])->whereNumber('company')->name('company.show');
+Route::get('/companies/{company}/edit', [CompanyController::class, 'editForm'])->name('company.edit');
+Route::patch('/companies/{company}/edit', [CompanyController::class, 'edit']);
 Route::post('/companies', [CompanyController::class, 'store']);
 
 Route::get('/position/{position}', [PositionController::class, 'index'])->whereNumber('position')->name('position');
@@ -52,3 +55,6 @@ Route::get('/companies/{company}/moderate', [CompaniesController::class, 'modera
 Route::get('/position/moderate/', [PositionsController::class, 'moderatePositionsList'])->name('moderate.positions');
 Route::patch('/position/{position}/moderate', [PositionsController::class, 'moderatePosition'])->name('moderate.position');
 Route::get('/position/{position}/moderate', [PositionsController::class, 'moderatePositionForm'])->name('moderate.position.form');
+
+
+Route::get('/notifications', [NotificationController::class, 'toEdit'])->name('notifications');
