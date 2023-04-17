@@ -4,13 +4,13 @@
     <form action="{{ route('position.post') }}" method="post">
         @csrf
         <input type="hidden" name="company_id" value="{{ $company->id }}">
-        <input type="text" name="title" value="{{ old('title') }}">
+        <input class="border border-gray-300 border-2 rounded-lg" type="text" name="title" value="{{ old('title') }}">
         @error('title')
             <div class="text-red-500 mt-2 text-sm">
                 {{ $message }}
             </div>
         @enderror
-        <textarea name="description">{{ old('description') }}</textarea> 
+        <textarea class="border border-gray-300 border-2 rounded-lg" name="description">{{ old('description') }}</textarea> 
         @error('description')
             <div class="text-red-500 mt-2 text-sm">
                 {{ $message }}
