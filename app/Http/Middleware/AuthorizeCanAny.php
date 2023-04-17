@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Contracts\Auth\Access\Gate;
+use \Illuminate\Auth\Access\AuthorizationException;
 
 class AuthorizeCanAny
 {
@@ -31,12 +32,17 @@ class AuthorizeCanAny
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  array|null  ...$abilities
+     * @return mixed
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function handle(Request $request, Closure $next, ...$permissions): Response
+    public function handle(Request $request, Closure $next, ...$abilities): Response
     {
-        if ( !$this->gate->any($permissions) ) {
-            abort(403);
+        if ( !$this->gate->any($abilities) ) {
+            throw new AuthorizationException("Not authorized");
         }
         return $next($request);
     }
