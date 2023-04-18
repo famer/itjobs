@@ -9,6 +9,7 @@
     </head>
     <body>
         <div class="p-2 mb-5">
+            <a href="{{ route('home') }}">🏠</a>
             @if (!auth()->user())
                 <a class="hover:underline" href="{{ route('register') }}">Registration</a>
                 <a class="hover:underline" href="{{ route('login') }}">Login</a>
@@ -34,6 +35,8 @@
             @endcan
             
         </div>
-        @yield('content')
+        <div class="container p-4">
+            @yield('content')
+        </div>
     </body>
 </html>

@@ -4,10 +4,9 @@
     <h1 class="text-3xl font-bold underline">
         Hello 
         @if (auth()->user())
-            {{ auth()->user()->name }}
+            {{ auth()->user()->name }}!
         @else
-            world
+            world!
         @endif
-        !
     </h1>
 @endsection
