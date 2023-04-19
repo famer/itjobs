@@ -18,7 +18,7 @@
             <h3 class="text-lg text-red-500">To edit</h3>
             @foreach ( $positionsToEdit as $position )
                 <div>
-                    <h3><a href="{{ route('position.edit', $position) }}">{{ $position->title }}</a><h3>
+                    <h3 class="font-bold"><a class="underline" href="{{ route('position.edit', $position) }}">{{ $position->title }}</a><h3>
                 </div>
             @endforeach
         </div>
