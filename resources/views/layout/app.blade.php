@@ -9,24 +9,9 @@
     </head>
     <body>
         <div class="p-2 mb-5">
-            <a href="{{ route('home') }}">🏠</a>
-            @if (!auth()->user())
-                <a class="hover:underline" href="{{ route('register') }}">Registration</a>
-                <a class="hover:underline" href="{{ route('login') }}">Login</a>
-            @else
-                <form class="inline" method="post" action="{{ route('logout') }}">
-                    @csrf
-                    <button class="hover:underline text-red-500" type="submit">Logout</button>
-                </form>
-            
-                <a class="hover:underline" href="{{ route('company') }}">Companies</a>
+            <a href="{{ route('home') }}">🏠</a>          
+            <a class="hover:underline" href="{{ route('company') }}">Companies</a>
 
-                <span>{{ auth()->user()->name }} 
-                    @if (auth()->user()->getNotificationsCount())
-                        <a href="{{ route('notifications') }}">( {{ auth()->user()->getNotificationsCount() }} )</a>
-                    @endif
-                </span>
-            @endif
             @canany(['moderate', 'moderate-companies'])
                 <a class="hover:underline" href="{{ route('moderate.companies') }}">Moderate companies
                 ({{ \App\Http\Controllers\Moderate\CompaniesController::moderateCount() }})
@@ -37,7 +22,22 @@
                 ({{ \App\Http\Controllers\Moderate\PositionsController::moderateCount() }})
                 </a>
             @endcan
-            
+            <div class="inline float-right">
+            @if (!auth()->user())
+                <a class="hover:underline" href="{{ route('register') }}">Registration</a>
+                <a class="hover:underline" href="{{ route('login') }}">Login</a>
+            @else
+                <span>{{ auth()->user()->name }} 
+                    @if (auth()->user()->getNotificationsCount())
+                        <a href="{{ route('notifications') }}">( {{ auth()->user()->getNotificationsCount() }} )</a>
+                    @endif
+                </span>
+                <form class="inline" method="post" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="hover:underline text-red-500" type="submit">Logout</button>
+                </form>
+            @endif
+            </div>
         </div>
         <div class="container p-4">
             @yield('content')
