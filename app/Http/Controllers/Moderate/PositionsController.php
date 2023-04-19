@@ -13,6 +13,10 @@ class PositionsController extends Controller
         $this->middleware(['canany:moderate-positions,moderate']);
     }
 
+    public static function moderateCount() {
+        return Position::get()->where('moderated', 'no')->count();
+    }
+
     public function moderatePositionsList() {
         $positions = Position::get()->where('moderated', 'no');
 

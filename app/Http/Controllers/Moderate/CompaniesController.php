@@ -13,6 +13,10 @@ class CompaniesController extends Controller
         $this->middleware(['canany:moderate-companies,moderate']);
     }
 
+    public static function moderateCount() {
+        return Company::get()->where('moderated', 'no')->count();
+    }
+
     public function moderateCompaniesList() {
 
         $companies = Company::get()->where('moderated', 'no');

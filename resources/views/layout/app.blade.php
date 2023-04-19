@@ -28,10 +28,14 @@
                 </span>
             @endif
             @canany(['moderate', 'moderate-companies'])
-                <a class="hover:underline" href="{{ route('moderate.companies') }}">Moderate companies</a>
+                <a class="hover:underline" href="{{ route('moderate.companies') }}">Moderate companies
+                ({{ \App\Http\Controllers\Moderate\CompaniesController::moderateCount() }})
+                </a>
             @endcan
             @canany(['moderate', 'moderate-positions'])
-                <a class="hover:underline" href="{{ route('moderate.positions') }}">Moderate positions</a>
+                <a class="hover:underline" href="{{ route('moderate.positions') }}">Moderate positions
+                ({{ \App\Http\Controllers\Moderate\PositionsController::moderateCount() }})
+                </a>
             @endcan
             
         </div>
