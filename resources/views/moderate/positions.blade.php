@@ -4,7 +4,7 @@
 
     @forelse ($positions as $position)
         <div class="mb-10">
-            {{ $position->title }}<br />
+            <h3 class="font-bold">{{ $position->title }}</h3>
             {{ $position->description }}<br />
 
             <a class="hover:bg-red-200 bg-red-300 px-2 py-1.5 rounded text-red-500" href="{{ route('moderate.position.form', $position) }}">Nope, edit</a>
