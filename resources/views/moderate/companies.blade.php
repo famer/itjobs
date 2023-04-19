@@ -5,12 +5,12 @@
     @forelse ($companies as $company)
         {{ $company->name }}<br />
 
-        <a class="text-red-500" href="{{ route('moderate.company.form', $company) }}">Nope, edit</a>
-        <form method="post" action="{{ route('moderate.company', $company) }}">
+        <a class="hover:bg-red-200 bg-red-300 px-2 py-1.5 rounded text-red-500" href="{{ route('moderate.company.form', $company) }}">Nope, edit</a>
+        <form class="inline" method="post" action="{{ route('moderate.company', $company) }}">
             @csrf
             @method('PATCH')
             <input type="hidden" name="moderated" value="yes">
-            <button class="text-green-500" type="submit">Fine</button>
+            <button class="hover:bg-green-200 bg-green-300 px-2 py-1.5 rounded text-grey-500" type="submit">Fine</button>
         </form>
     @empty
         <span class="text-green-500">Nothing to moderate</span>

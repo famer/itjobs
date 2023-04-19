@@ -25,6 +25,7 @@
         <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold rounded py-1 px-4">Save</button>
     </form>
     @if($position->moderationComments)
+        <h3 class="text-xl text-red-500">Comments</h3>
         <div class="bg-red-300 text-grey-700 p-2 my-2 w-48 rounded">{{ $position->moderationComments }}</div>
     @endif
 
