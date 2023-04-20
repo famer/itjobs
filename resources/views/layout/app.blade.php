@@ -8,7 +8,7 @@
         <!--script src="https://cdn.tailwindcss.com"></script-->
     </head>
     <body>
-        <div class="p-2 mb-5">
+        <div class="p-2 mb-5 border-b-2">
             <a href="{{ route('home') }}">🏠</a>          
             <a class="hover:underline" href="{{ route('company') }}">Companies</a>
 
