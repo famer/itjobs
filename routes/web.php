@@ -10,7 +10,7 @@ use App\Http\Controllers\ModerationController;
 use App\Http\Controllers\Moderate\CompaniesController;
 use App\Http\Controllers\Moderate\PositionsController;
 use App\Http\Controllers\NotificationController;
-
+use App\Http\Controllers\Auth\VerifyEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,3 +58,7 @@ Route::get('/position/{position}/moderate', [PositionsController::class, 'modera
 
 
 Route::get('/notifications', [NotificationController::class, 'toEdit'])->name('notifications');
+
+Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
+->middleware(['signed', 'throttle:6,1'])
+->name('verification.verify');

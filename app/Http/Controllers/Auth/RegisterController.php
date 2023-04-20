@@ -27,6 +27,8 @@ class RegisterController extends Controller
 
         auth()->attempt($request->only('email', 'password'));
 
+        auth()->user()->sendEmailVerificationNotification();
+
         return redirect()->route('home');
     }
 }
