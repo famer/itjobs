@@ -6,7 +6,7 @@
         @if (auth()->user())
             {{ auth()->user()->name }}!
         @else
-            world!+
+            world!
         @endif
     </h1>
 @endsection
