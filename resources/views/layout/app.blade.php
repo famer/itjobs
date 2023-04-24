@@ -12,6 +12,11 @@
             <a href="{{ route('home') }}">🏠</a>          
             <a class="hover:underline" href="{{ route('company') }}">Companies</a>
 
+            <form class="inline" action="{{ route('search') }}" method="get">
+                <input class="border-2 py-1 border-gray-300 rounded-lg" type="text" name="query" placeholder="search" value="{{ request()->query('query') }}">
+                <button class="bg-blue-500 text-white px-2 py-1 rounded" type="submit">Search</button>
+            </form>
+
             @canany(['moderate', 'moderate-companies'])
                 <a class="hover:underline" href="{{ route('moderate.companies') }}">Moderate companies
                 ({{ \App\Http\Controllers\Moderate\CompaniesController::moderateCount() }})
@@ -22,7 +27,7 @@
                 ({{ \App\Http\Controllers\Moderate\PositionsController::moderateCount() }})
                 </a>
             @endcan
-            <div class="inline float-right">
+            <div class="py-2 inline float-right">
             @if (!auth()->user())
                 <a class="hover:underline" href="{{ route('register') }}">Registration</a>
                 <a class="hover:underline" href="{{ route('login') }}">Login</a>

@@ -11,6 +11,7 @@ use App\Http\Controllers\Moderate\CompaniesController;
 use App\Http\Controllers\Moderate\PositionsController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,3 +63,5 @@ Route::get('/notifications', [NotificationController::class, 'toEdit'])->name('n
 Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
 ->middleware(['signed', 'throttle:6,1'])
 ->name('verification.verify');
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');
