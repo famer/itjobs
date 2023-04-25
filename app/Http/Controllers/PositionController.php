@@ -27,7 +27,7 @@ class PositionController extends Controller
         
         Position::create($request->only(['title', 'description', 'company_id']));
 
-        return back();
+        return back()->with('status', __('positions.On moderation'));
     }
 
     public function destroy(Position $position) {

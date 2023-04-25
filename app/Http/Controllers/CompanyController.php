@@ -66,6 +66,6 @@ class CompanyController extends Controller
             'name' => $request->name,
             'user_id' => auth()->user()->id,
         ]);
-        return back();
+        return back()->with('status', __('company.On moderation'));
     }
 }
