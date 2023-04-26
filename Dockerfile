@@ -34,7 +34,7 @@ WORKDIR /var/www
 COPY --from=0 /app /var/www
 
 RUN composer install
-RUN mv .env.example .env
+RUN mv -n .env.example .env
 RUN php artisan key:generate
 RUN php artisan migrate --force --seed
 CMD php artisan serve --host=0.0.0.0
