@@ -20,6 +20,6 @@
                 </div>
             @enderror
         </div>
-        <button class="bg-blue-500 hover:bg-blue-600 fond-bold text-white px-4 py-1 rounded" type="submit">{{ __('positions.Add') }}</button>
+        <button class="btn btn-blue" type="submit">{{ __('positions.Add') }}</button>
     </form>
 </div>
