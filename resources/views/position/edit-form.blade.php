@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', __('pages.Edit position') . ' - ' . $position->title)
+
 @section('content')
 
     <h1 class="text-xl">{{ $position->title }}</h1>

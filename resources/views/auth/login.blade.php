@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', __('pages.Login'))
+
 @section('content')
     <div class="max-w-md mx-auto">
         <h1 class="text-lg">{{ __('login.Login') }}</h1>

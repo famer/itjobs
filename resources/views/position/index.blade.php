@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', '- ' . $position->title)
+
 @section('content')
     <h1 class="text-lg">{{ $position->title }}</h1>
     <div>{{ $position->description }}</div>

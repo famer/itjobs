@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', __('pages.Notifications'))
+
 @section('content')
     {{ __('notifications.Notifications') }}: {{ $count }}
 

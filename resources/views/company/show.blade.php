@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', '- ' . $company->name)
+
 @section('content')
 
     @if(session('status'))

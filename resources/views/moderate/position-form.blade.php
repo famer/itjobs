@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', __('pages.Moderate position') . ' - ' . $position->title)
+
 @section('content')
 
     {{ $position->title }}<br />

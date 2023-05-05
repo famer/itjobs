@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', __('pages.Edit company') . ' - ' . $company->name)
+
 @section('content')
     <div class="mb-4">
         <h1 class="text-xl">{{ $company->name }}</h1>

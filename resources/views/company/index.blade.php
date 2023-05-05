@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', __('pages.Companies'))
+
 @section('content')
 
     @if(session('status'))

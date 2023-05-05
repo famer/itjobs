@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', __('pages.Logout'))
+
 @section('content')
     <form class="mt-8 space-y-6" action="{{ route('logout') }}" method="post">
         @csrf

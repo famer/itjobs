@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', __('pages.Moderate company') . ' - ' . $company->name)
+
 @section('content')
 
     <h1 class="text-lg">{{ $company->name }}</h1>

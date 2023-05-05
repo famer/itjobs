@@ -1,5 +1,8 @@
 @extends('layout.app')
 
+@section('title', __('pages.Moderate positions'))
+
+
 @section('content')
 
     @forelse ($positions as $position)

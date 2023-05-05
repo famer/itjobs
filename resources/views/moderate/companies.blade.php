@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', __('pages.Moderate companies'))
+
 @section('content')
 
     @forelse ($companies as $company)

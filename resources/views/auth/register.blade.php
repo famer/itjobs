@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', __('pages.Register'))
+
 @section('content')
     <div class="">{{ __('register.Register') }}</div>
     <div class="w-1/3">
