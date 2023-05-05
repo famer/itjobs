@@ -4,6 +4,38 @@ services:
   app:
     build: .
     container_name: app
-    command: php artisan serve --host=0.0.0.0
+    command: bash -c "php artisan key:generate && php artisan serve --host=0.0.0.0"
     ports: 
       - 8000:8000
+    environment:
+      - DB_CONNECTION=pgsql
+      - DB_HOST=db
+      - DB_DATABASE=itjobs
+      - DB_USERNAME=itjobs
+      - DB_PASSWORD=itjobs
+    depends_on:
+      - db
+    networks:
+      - itjobs-backend-tier
+
+  db:
+    image: postgres:14
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+    networks:
+      - itjobs-backend-tier
+    volumes:
+      - itjobs-db:/var/lib/postgresql/data
+    #  - ./replica_user.sql:/docker-entrypoint-initdb.d/replica_user.sql
+    environment:
+      - POSTGRES_USER=itjobs
+      - POSTGRES_PASSWORD=itjobs
+
+volumes:
+  itjobs-db:
+    driver: local
+
+networks:
+  itjobs-backend-tier:
+    driver: bridge
