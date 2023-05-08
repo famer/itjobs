@@ -4,7 +4,8 @@ services:
   app:
     build: .
     container_name: app
-    command: bash -c "php artisan key:generate && php artisan serve --host=0.0.0.0"
+    command: bash -c "php artisan key:generate && php artisan migrate && php-fpm"
+    restart: unless-stopped
     ports: 
       - 8000:8000
     environment:
@@ -13,6 +14,8 @@ services:
       - DB_DATABASE=itjobs
       - DB_USERNAME=itjobs
       - DB_PASSWORD=itjobs
+    volumes:
+      - ./:/var/www
     depends_on:
       - db
     networks:
@@ -27,10 +30,34 @@ services:
       - itjobs-backend-tier
     volumes:
       - itjobs-db:/var/lib/postgresql/data
-    #  - ./replica_user.sql:/docker-entrypoint-initdb.d/replica_user.sql
+      - ./replica_user.sql:/docker-entrypoint-initdb.d/replica_user.sql
     environment:
       - POSTGRES_USER=itjobs
       - POSTGRES_PASSWORD=itjobs
+
+  webserver:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx:/etc/nginx/conf.d/
+    depends_on:
+      - app
+    networks:
+      - itjobs-backend-tier
+  
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 8081:8080
+    depends_on:
+      - db
+    networks:
+      - itjobs-backend-tier
 
 volumes:
   itjobs-db:

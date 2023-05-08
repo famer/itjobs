@@ -38,4 +38,6 @@ RUN composer install
 RUN mv -n .env.example .env
 #RUN php artisan key:generate
 #RUN php artisan migrate --force --seed
-CMD php artisan serve --host=0.0.0.0
+EXPOSE 9000
+CMD ["php-fpm"]
+#CMD php artisan serve --host=0.0.0.0
