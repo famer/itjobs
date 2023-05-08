@@ -1,6 +1,12 @@
 version: "3"
 
 services:
+  node:
+    image: node:20
+    command: bash -c "npm install && npm run build"
+    working_dir: /app
+    volumes:
+      - .:/app
   app:
     build: .
     container_name: app
@@ -17,6 +23,7 @@ services:
     volumes:
       - ./:/var/www
     depends_on:
+      - node
       - db
     networks:
       - itjobs-backend-tier
