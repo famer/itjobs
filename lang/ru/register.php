@@ -6,4 +6,5 @@ return [
     'Email address' => 'Email',
     'Password' => 'Пароль',
     'Password confirmation' => 'Подтверждение пароля',
+    'Publish positions' => 'Хотите публиковать вакансии?',
 ];

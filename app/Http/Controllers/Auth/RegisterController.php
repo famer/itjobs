@@ -20,11 +20,13 @@ class RegisterController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()]
         ]);
 
+        $type = ($request->publish_positions == 'yes' ? 'employer' : 'employee');
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            ''
+            'type' => $type,
         ]);
 
         auth()->attempt($request->only('email', 'password'));
