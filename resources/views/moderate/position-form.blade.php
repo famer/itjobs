@@ -5,7 +5,7 @@
 @section('content')
 
     {{ $position->title }}<br />
-    {{ $position->description }}<br />
+    {!! nl2br(e($position->description)) !!}<br />
     <form method="post" action="{{ route('moderate.position', $position) }}">
         @csrf
         @method('PATCH')

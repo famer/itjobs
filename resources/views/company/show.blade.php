@@ -28,7 +28,7 @@
     @foreach ( $company->positions->where('moderated', 'yes') as $position )
         <div class="mb-5">
             <h3><a class="underline" href="{{ route('position', $position) }}">{{ $position->title }}</a><h3>
-            <span> {{ $position->description }}</span>
+            <span>{!! nl2br(e($position->description)) !!}</span>
             <br />
             @can('update-position', $position)
                 <a href="{{ route('position.edit', $position) }}" class="text-green-500">{{ __('positions.Edit') }}</a>
