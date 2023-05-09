@@ -16,7 +16,7 @@
                 <a class="hover:underline" href="{{ route('company') }}">{{ __('messages.Companies') }}</a>
             @endcan
             <form class="inline" action="{{ route('search') }}" method="get">
-                <input class="border-2 py-1 border-gray-300 rounded-lg" type="text" name="query" placeholder="{{ __('messages.Search') }}" value="{{ request()->query('query') }}">
+                <input class="w-1/4 border-2 py-1 border-gray-300 rounded-lg" type="text" name="query" placeholder="{{ __('messages.Search') }}" value="{{ request()->query('query') }}">
                 <button class="bg-blue-500 text-white px-2 py-1 rounded" type="submit">{{ __('messages.Search') }}</button>
             </form>
 
