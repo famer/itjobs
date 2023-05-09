@@ -10,7 +10,7 @@ services:
   app:
     build: .
     container_name: app
-    command: bash -c "php artisan key:generate && php artisan migrate && php-fpm"
+    command: bash -c "php-fpm"
     restart: unless-stopped
     ports: 
       - 8000:8000
