@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite('resources/css/app.css')
         <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js" integrity="sha256-a2yjHM4jnF9f54xUQakjZGaqYs/V1CYvWpoqZzC2/Bw=" crossorigin="anonymous"></script>
-        @vite('resources/js/app.js')
+        <script src="/js/jquery.cookie.js"></script>
         <!--script src="https://cdn.tailwindcss.com"></script-->
     </head>
     <body>
@@ -50,9 +50,9 @@
         <div class="container p-4">
             @yield('content')
         </div>
-        <div id="cookie_block" class="fixed bottom-0 left-0 right-0 bg-blue-300 px-2 py-2 rounded">
-            <span class="text-gray-800">{{ __('messages.Сookie') }}</span><br>
-            <a class="btn btn-blue cursor-pointer">{{ __('messages.Accept cookie') }}</a>
+        <div id="cookie_block" class="drop-shadow-lg fixed m-6 bottom-0 left-0 w-2/5 border-t-2 bg-white border-blue-300 p-4 rounded">
+            <div class="mb-2 text-gray-800">{{ __('messages.Сookie') }}</div>
+            <a class="my-2 btn btn-blue cursor-pointer">{{ __('messages.Accept cookie') }}</a>
         </div>
         <script>
             $('#cookie_block').hide();
