@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="">{{ __('register.Register') }}</div>
-    <div class="w-1/3">
+    <div class="max-w-md mx-auto">
         <form class="mt-8 space-y-6" action="{{ route('register') }}" method="post">
             @csrf
             <input name="name" type="text" required 
