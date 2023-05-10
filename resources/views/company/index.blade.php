@@ -40,9 +40,11 @@
     <div class="mb-5">
         <h3 class="text-xl">{{ __('company.Companies') }}</h3>
 
-        @foreach( $companies as $company )
+        @forelse( $companies as $company )
             <h3><a class="underline" href="{{ route('company.show', $company) }}">{{ $company->name }}</a></h3>
-        @endforeach
+        @empty
+            {{ __('company.No companies') }}
+        @endforelse
     </div>
 
 @endsection
