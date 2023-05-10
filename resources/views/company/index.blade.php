@@ -19,10 +19,20 @@
 
     @if($toEdit->count())
         <div class="mb-5 p-3 bg-red-300 rounded-lg">
-            <h3 class="text-xl text-red-500">To edit</h3>
+            <h3 class="text-xl text-red-500">{{ __('company.To edit') }}</h3>
 
             @foreach( $toEdit as $company )
-                <h3><a class="underline" href=" {{  route('company.edit', $company) }} ">{{ $company->name }}</a></h3>
+                <h3><a class="underline" href="{{ route('company.edit', $company) }}">{{ $company->name }}</a></h3>
+            @endforeach
+        </div>
+    @endif
+
+    @if($onModeration->count())
+        <div class="mb-5 p-3 bg-gray-300 rounded-lg">
+            <h3 class="text-xl text-gray-500">{{ __('company.On moderation') }}</h3>
+
+            @foreach( $onModeration as $company )
+                <h3><a class="underline" href="{{ route('company.show', $company) }}">{{ $company->name }}</a></h3>
             @endforeach
         </div>
     @endif
@@ -31,7 +41,7 @@
         <h3 class="text-xl">{{ __('company.Companies') }}</h3>
 
         @foreach( $companies as $company )
-            <h3><a class="underline" href=" {{  route('company.show', $company) }} ">{{ $company->name }}</a></h3>
+            <h3><a class="underline" href="{{ route('company.show', $company) }}">{{ $company->name }}</a></h3>
         @endforeach
     </div>
 

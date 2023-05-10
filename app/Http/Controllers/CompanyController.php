@@ -19,9 +19,11 @@ class CompanyController extends Controller
             abort(403);
         }
         $companies = auth()->user()->companies->where('moderated', 'yes');
+        $onModeration = auth()->user()->companies->where('moderated', 'no');
         $toEdit = auth()->user()->companies->where('moderated', 'remoderation');
         return view('company.index', [
             'companies' => $companies,
+            'onModeration' => $onModeration,
             'toEdit' => $toEdit,
         ]);
     }

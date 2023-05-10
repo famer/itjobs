@@ -25,6 +25,26 @@
             @endforeach
         </div>
     @endif
+
+    @if($company->positions->where('moderated', 'no')->count())
+        <div class="mb-5 p-3 bg-gray-300 rounded-lg">
+            <h3 class="text-lg text-gray-500">{{ __('positions.On moderation') }}</h3>
+            @foreach ( $company->positions->where('moderated', 'no') as $position )
+                <div>
+                    <h3><a class="underline" href="{{ route('position', $position) }}">{{ $position->title }}</a><h3>
+                    @can('update-position', $position)
+                        <a href="{{ route('position.edit', $position) }}" class="text-gray-500">{{ __('positions.Edit') }}</a>
+                        <form class="inline" action="{{ route('position.destroy', $position) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('{{ __('positions.Sure delete') }}');" class="text-red-500">{{ __('positions.Delete') }}</button>
+                        </form>
+                    @endcan
+                </div>
+            @endforeach
+        </div>
+    @endif
+
     @foreach ( $company->positions->where('moderated', 'yes') as $position )
         <div class="mb-5">
             <h3><a class="underline" href="{{ route('position', $position) }}">{{ $position->title }}</a><h3>
