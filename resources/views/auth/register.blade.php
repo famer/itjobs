@@ -3,8 +3,8 @@
 @section('title', __('pages.Register'))
 
 @section('content')
-    <div class="">{{ __('register.Register') }}</div>
     <div class="max-w-md mx-auto">
+        <div class="">{{ __('register.Register') }}</div>
         <form class="mt-8 space-y-6" action="{{ route('register') }}" method="post">
             @csrf
             <input name="name" type="text" required 

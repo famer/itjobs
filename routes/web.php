@@ -24,9 +24,7 @@ use App\Http\Controllers\SearchController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('home');
+Route::get('/', [PositionController::class, 'list'])->name('home');
 
 Route::get('/register', [RegisterController::class, 'registerForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);

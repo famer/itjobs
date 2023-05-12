@@ -5,5 +5,5 @@
 @section('content')
     <h1 class="text-lg">{{ $position->title }}</h1>
     <div>{!! nl2br(e($position->description)) !!}</div>
-    <a class="underline" href="{{route('company.show', $position->company) }}">{{ __('positions.Back') }}</a>
+    <a class="underline" href="{{ URL::previous() }}">{{ __('positions.Back') }}</a>
 @endsection

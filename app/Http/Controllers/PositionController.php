@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Gate;
 
 class PositionController extends Controller
 {
+    public function list() {
+        $positions = Position::latest()->where('moderated', 'yes')->take(10)->get();
+        return view('index', [
+            'positions' => $positions
+        ]);
+    }
+
     public function index(Position $position) {
         return view('position.index', ['position' => $position]);
     }
