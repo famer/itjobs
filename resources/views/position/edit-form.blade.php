@@ -5,11 +5,11 @@
 @section('content')
 
     <h1 class="text-xl">{{ $position->title }}</h1>
-    <form action="{{ route('position.edit', $position) }}" method="post">
+    <form class="max-w-md" action="{{ route('position.edit', $position) }}" method="post">
         @csrf
         @method('PATCH')
         <div>
-            <input required class="w-1/4 px-2 py-1.5 border border-gray-300 border-2 rounded-lg" type="text" name="title" value="{{ $position->title }}">
+            <input required class="w-full px-2 py-1.5 border border-gray-300 border-2 rounded-lg" type="text" name="title" value="{{ $position->title }}">
             @error('title')
                 <div class="text-red-500 mt-2 text-sm">
                     {{ $message }}
@@ -17,7 +17,7 @@
             @enderror
         </div>
         <div>
-            <textarea required class="w-1/4 px-2 py-1.5 border border-gray-300 border-2 rounded-lg" name="description">{{ $position->description }}</textarea>
+            <textarea required class="h-80 w-full px-2 py-1.5 border border-gray-300 border-2 rounded-lg" name="description">{{ $position->description }}</textarea>
             @error('description')
                 <div class="text-red-500 mt-2 text-sm">
                     {{ $message }}

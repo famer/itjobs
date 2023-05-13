@@ -13,7 +13,7 @@
             @enderror
         </div>
         <div>
-            <textarea required placeholder="{{ __('positions.Description') }}" class="relative block w-full px-2 py-1.5 border border-gray-300 border-2 rounded-lg" name="description">{{ old('description') }}</textarea> 
+            <textarea required placeholder="{{ __('positions.Description') }}" class="h-80 relative block w-full px-2 py-1.5 border border-gray-300 border-2 rounded-lg" name="description">{{ old('description') }}</textarea> 
             @error('description')
                 <div class="text-red-500 my-2 text-sm">
                     {{ $message }}
